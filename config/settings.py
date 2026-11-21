@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # Local apps
     'apps.users.apps.UsersConfig',
     'apps.events.apps.EventsConfig',
+    'apps.notifications.apps.NotificationsConfig',
 ]
 
 MIDDLEWARE = [
