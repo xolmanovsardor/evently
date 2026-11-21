@@ -1,7 +1,7 @@
 {
-  "phase": "COMPLETED",
-  "task": "Telegram Bot Integratsiyasi, Xabarnomalar va Eslatmalar (Phase 6 & 7)",
-  "feature_branch": "feat/telegram-notifications",
+  "phase": "APPROVED",
+  "task": "Alohida aiogram 3.x Telegram Bot Dasturi (Phase 8)",
+  "feature_branch": "feat/aiogram-bot",
   "cycle_count": 1,
   "max_cycles": 3,
   "verdict": "APPROVED",
@@ -70,7 +70,32 @@
       "event": "TASK_COMPLETED",
       "branch_merged": "feat/telegram-notifications",
       "timestamp": "2026-11-21T15:06:21.093161"
+    },
+    {
+      "event": "TASK_STARTED",
+      "task": "Alohida aiogram 3.x Telegram Bot Dasturi (Phase 8)",
+      "branch": "feat/aiogram-bot",
+      "timestamp": "2026-11-21T15:20:32.874246"
+    },
+    {
+      "cycle": 1,
+      "verdict": "APPROVED",
+      "score": 10,
+      "issues": [],
+      "timestamp": "2026-11-21T15:24:27.134821"
+    },
+    {
+      "event": "TASK_COMPLETED",
+      "branch_merged": "feat/aiogram-bot",
+      "timestamp": "2026-11-21T15:24:27.842849"
+    },
+    {
+      "cycle": 1,
+      "verdict": "APPROVED",
+      "score": 10,
+      "issues": [],
+      "timestamp": "2026-11-21T15:24:50.996608"
     }
   ],
-  "last_updated": "2026-11-21T15:06:21.093161"
+  "last_updated": "2026-11-21T15:24:50.996608"
 }

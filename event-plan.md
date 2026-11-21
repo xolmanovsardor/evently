@@ -17,9 +17,9 @@
 | **5** | [Ro'yxatdan O'tish va Biznes Qoidalar (Registration)](#5-bosqich-royxatdan-otish-va-biznes-qoidalar-registration) | ✅ Bajarildi | 13 / 13 |
 | **6** | [Telegram Bot Integratsiyasi va Xabarnomalar](#6-bosqich-telegram-bot-integratsiyasi-va-xabarnomalar) | ✅ Bajarildi | 5 / 5 |
 | **7** | [Avtomatik Eslatmalar Mexanizmi (Reminders)](#7-bosqich-avtomatik-eslatmalar-mexanizmi-reminders) | ✅ Bajarildi | 3 / 3 |
-| **8** | [Alohida aiogram 3.x Telegram Bot Dasturi](#8-bosqich-alohida-aiogram-3x-telegram-bot-dasturi) | ❌ Kutilmoqda | - |
+| **8** | [Alohida aiogram 3.x Telegram Bot Dasturi](#8-bosqich-alohida-aiogram-3x-telegram-bot-dasturi) | ✅ Bajarildi | 7 / 7 |
 | **9** | [Namunaviy Ma'lumotlar Yaratish (Seed Data)](#9-bosqich-namunaviy-malumotlar-yaratish-seed-data) | ❌ Kutilmoqda | - |
-| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (50/50 PASS) | 50 / 50 |
+| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (57/57 PASS) | 57 / 57 |
 | **11** | [Production Deployment va Yakuniy Topshirish](#11-bosqich-production-deployment-va-yakuniy-topshirish) | ❌ Kutilmoqda | - |
 
 ---
@@ -187,11 +187,12 @@
 ## 8-BOSQICH: Alohida aiogram 3.x Telegram Bot Dasturi
 *Foydalanuvchi bilan Telegram orqali muloqot qiluvchi asinxron bot.*
 
-- [ ] **Bot tuzilmasi (`bot/`):**
-  - [ ] `bot/config.py` — Bot tokeni, backend URL va maxfiy kalitlar.
-  - [ ] `bot/api_client.py` — Backend API bilan xavfsiz HTTP muloqot (httpx/aiohttp).
-  - [ ] `bot/handlers.py` — `/start`, `/help`, `/start <token>` (deep linking tekshiruv va tasdiq).
-  - [ ] `bot/main.py` — aiogram botni alohida jarayonda ishga tushirish (`python -m bot.main`).
+- [x] **Bot tuzilmasi (`bot/`):**
+  - [x] [bot/config.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/config.py) — Bot tokeni, backend URL va maxfiy kalitlar.
+  - [x] [bot/api_client.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/api_client.py) — Backend API bilan xavfsiz asinxron HTTP muloqot (`aiohttp.ClientSession`).
+  - [x] [bot/handlers.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/handlers.py) — `/start`, `/help`, `/start <token>` (deep linking tekshiruv va tasdiq).
+  - [x] [bot/main.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/main.py) — aiogram botni alohida jarayonda ishga tushirish (`python -m bot.main`).
+  - [x] [bot/tests/test_bot.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/tests/test_bot.py) — 7 ta to'liq asinxron unit testlar.
 
 ---
 
@@ -210,10 +211,11 @@
 ## 10-BOSQICH: Sifat Nazorati va To'liq Integratsion Testlar
 *Loyiha himoyasi va xatolardan himoyalanganlik kafolati.*
 
-- [x] **Mavjud va yangi qo'shilgan testlar (50 ta PASS):**
+- [x] **Mavjud va yangi qo'shilgan testlar (57 ta PASS):**
   - [x] Auth testlari (12 ta): ro'yxatdan o'tish, login, profil, rol xavfsizligi.
   - [x] Core/Settings testlari (5 ta): health check, custom pagination, exception handler, CORS, logs.
   - [x] Events CRUD testlari (12 ta): model propertilari, admin ruxsatlari, BR-7, BR-8, BR-9 validatsiyalari, filter va search.
+  - [x] aiogram Bot testlari (7 ta): API client (200, 400, xatoliklar), /start, /start <token> va /help komandalari.
   - [x] `test_registration_success` (ochiq tadbirga muvaffaqiyatli yozilish).
   - [x] `test_registration_br1_duplicate` (ikki marta yozilish taqiqlanishi).
   - [x] `test_registration_br2_capacity_full` (sig'im to'lganda yozilib bo'lmasligi).
