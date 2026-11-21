@@ -2,6 +2,7 @@ from django.db import transaction
 from django.utils import timezone
 from config.exceptions import BusinessLogicError
 from apps.events.models import Event, EventStatus, Registration, RegistrationStatus
+from apps.notifications.services import handle_registration_notifications
 
 
 def register_for_event(user, event: Event) -> Registration:
@@ -61,6 +62,8 @@ def register_for_event(user, event: Event) -> Registration:
                 event=locked_event,
                 status=RegistrationStatus.ACTIVE
             )
+
+        transaction.on_commit(lambda: handle_registration_notifications(user, locked_event))
 
     return reg
 
