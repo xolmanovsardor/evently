@@ -254,6 +254,13 @@
 
 ## 📝 Amalga Oshirilgan O'zgarishlar Jurnali (Change Log)
 
+### [2026-11-21] — 9-BOSQICH Yakunlandi (Namunaviy Ma'lumotlar Yaratish - Seed Data)
+* **Feature branch:** `feat/seed-data` -> `develop` ga birlashtirildi (`47efab5`).
+* **Yaratilgan modullar:**
+  * [apps/events/management/commands/seed_data.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/events/management/commands/seed_data.py) — `seed_data [--clear]` komandasi (2 ta admin, 10 ta user, 15 ta turli xil holatdagi tadbirlar va ro'yxatdan o'tishlar).
+  * [apps/events/tests/test_seed_data.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/events/tests/test_seed_data.py) — 3 ta integratsion test (idempotency, tozalash va to'liq generatsiya).
+* **Testlar umumiy soni:** 60 ta PASS.
+
 ### [2026-11-21] — 8-BOSQICH Yakunlandi (aiogram 3.x Telegram Bot)
 * **Feature branch:** `feat/aiogram-bot` -> `develop` ga birlashtirildi (`f8e7633`).
 * **Yaratilgan modullar:**
