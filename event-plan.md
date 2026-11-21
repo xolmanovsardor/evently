@@ -18,8 +18,8 @@
 | **6** | [Telegram Bot Integratsiyasi va Xabarnomalar](#6-bosqich-telegram-bot-integratsiyasi-va-xabarnomalar) | ✅ Bajarildi | 5 / 5 |
 | **7** | [Avtomatik Eslatmalar Mexanizmi (Reminders)](#7-bosqich-avtomatik-eslatmalar-mexanizmi-reminders) | ✅ Bajarildi | 3 / 3 |
 | **8** | [Alohida aiogram 3.x Telegram Bot Dasturi](#8-bosqich-alohida-aiogram-3x-telegram-bot-dasturi) | ✅ Bajarildi | 7 / 7 |
-| **9** | [Namunaviy Ma'lumotlar Yaratish (Seed Data)](#9-bosqich-namunaviy-malumotlar-yaratish-seed-data) | ❌ Kutilmoqda | - |
-| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (57/57 PASS) | 57 / 57 |
+| **9** | [Namunaviy Ma'lumotlar Yaratish (Seed Data)](#9-bosqich-namunaviy-malumotlar-yaratish-seed-data) | ✅ Bajarildi | 3 / 3 |
+| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (60/60 PASS) | 60 / 60 |
 | **11** | [Production Deployment va Yakuniy Topshirish](#11-bosqich-production-deployment-va-yakuniy-topshirish) | ❌ Kutilmoqda | - |
 
 ---
@@ -199,12 +199,13 @@
 ## 9-BOSQICH: Namunaviy Ma'lumotlar Yaratish (Seed Data)
 *Loyihani tekshirish va ko'rgazma uchun test ma'lumotlarini kiritish.*
 
-- [ ] **Management Command:**
-  - [ ] `python manage.py seed_data` komandasi yaratiladi.
-- [ ] **Yaratiladigan ma'lumotlar:**
-  - [ ] 2 ta Admin hisobi (`admin1@example.com`, `admin2@example.com`).
-  - [ ] 10 ta oddiy foydalanuvchi hisobi.
-  - [ ] 15 ta turli holatdagi tadbirlar (kelajakdagi, o'tgan, ochiq, yopiq, cheklangan sig'imli).
+- [x] **Management Command ([apps/events/management/commands/seed_data.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/events/management/commands/seed_data.py)):**
+  - [x] `python manage.py seed_data [--clear]` komandasi yaratildi.
+- [x] **Yaratiladigan ma'lumotlar:**
+  - [x] 2 ta Admin hisobi (`admin1@example.com`, `admin2@example.com`).
+  - [x] 10 ta oddiy foydalanuvchi hisobi (`user1@example.com` - `user10@example.com`).
+  - [x] 15 ta turli holatdagi tadbirlar (kelajakdagi, o'tgan, ochiq, yopiq, cheklangan va cheksiz sig'imli).
+  - [x] Namunaviy ro'yxatdan o'tishlar (to'liq band tadbir, bekor qilingan yozilish va o'tgan tadbirlar).
 
 ---
 
@@ -247,3 +248,26 @@
 - [ ] **Yakuniy Hujjat:**
   - [ ] Asosiy `README.md` ni shaxsiy loyiha tavsifi bilan yangilash.
   - [ ] Swagger va jonli API havolalarini taqdim etish.
+
+---
+
+## 📝 Amalga Oshirilgan O'zgarishlar Jurnali (Change Log)
+
+### [2026-11-21] — 8-BOSQICH Yakunlandi (aiogram 3.x Telegram Bot)
+* **Feature branch:** `feat/aiogram-bot` -> `develop` ga birlashtirildi (`f8e7633`).
+* **Yaratilgan modullar:**
+  * [bot/config.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/config.py) — bot konfiguratsiyasi.
+  * [bot/api_client.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/api_client.py) — asinxron backend muloqot mijozi (`confirm_telegram_link`).
+  * [bot/handlers.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/handlers.py) — `/start`, `/help`, `/start <token>` deep linking handlerlari.
+  * [bot/main.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/main.py) — bot entrypoint va polling mexanizmi.
+  * [bot/tests/test_bot.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/bot/tests/test_bot.py) — 7 ta asinxron unit test (100% PASS).
+* **Testlar umumiy soni:** 57 ta PASS.
+
+### [2026-11-21] — 6 va 7-BOSQICHLAR Yakunlandi (Telegram Integratsiyasi va Eslatmalar)
+* **Feature branch:** `feat/telegram-notifications` -> `develop` ga birlashtirildi (`cdb5d76`).
+* **Yaratilgan modullar:**
+  * [apps/notifications/views.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/views.py) — `POST /api/v1/telegram/link/`, `POST /api/v1/telegram/confirm/`.
+  * [apps/notifications/services.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/services.py) — `send_telegram_message`, `notify_user_registration`, `notify_admins_new_registration`.
+  * [apps/notifications/management/commands/send_event_reminders.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/management/commands/send_event_reminders.py) — `send_event_reminders` komandasi.
+  * [apps/notifications/tests/](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/tests/) — 8 ta integratsion test (100% PASS).
+* **Biznes qoidalar:** `transaction.on_commit(...)` xavfsiz bildirishnomalar, failover try-except.
