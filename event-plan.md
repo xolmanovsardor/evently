@@ -14,12 +14,12 @@
 | **2** | [Django Core & Settings Me'morchiligi](#2-bosqich-django-core--settings-memorchiligi) | ✅ Bajarildi | 5 / 5 |
 | **3** | [Foydalanuvchilar, Autentifikatsiya va Ruxsatlar (Auth)](#3-bosqich-foydalanuvchilar-autentifikatsiya-va-ruxsatlar-auth) | ✅ Bajarildi | 12 / 12 |
 | **4** | [Tadbirlar Boshqaruvi va Filtrlash (Events CRUD)](#4-bosqich-tadbirlar-boshqaruvi-va-filtrlash-events-crud) | ✅ Bajarildi | 12 / 12 |
-| **5** | [Ro'yxatdan O'tish va Biznes Qoidalar (Registration)](#5-bosqich-royxatdan-otish-va-biznes-qoidalar-registration) | ✅ Bajarildi | 8 / 8 |
-| **6** | [Telegram Bot Integratsiyasi va Xabarnomalar](#6-bosqich-telegram-bot-integratsiyasi-va-xabarnomalar) | ❌ Kutilmoqda | 0 / 3 |
-| **7** | [Avtomatik Eslatmalar Mexanizmi (Reminders)](#7-bosqich-avtomatik-eslatmalar-mexanizmi-reminders) | ❌ Kutilmoqda | 0 / 2 |
+| **5** | [Ro'yxatdan O'tish va Biznes Qoidalar (Registration)](#5-bosqich-royxatdan-otish-va-biznes-qoidalar-registration) | ✅ Bajarildi | 13 / 13 |
+| **6** | [Telegram Bot Integratsiyasi va Xabarnomalar](#6-bosqich-telegram-bot-integratsiyasi-va-xabarnomalar) | ✅ Bajarildi | 5 / 5 |
+| **7** | [Avtomatik Eslatmalar Mexanizmi (Reminders)](#7-bosqich-avtomatik-eslatmalar-mexanizmi-reminders) | ✅ Bajarildi | 3 / 3 |
 | **8** | [Alohida aiogram 3.x Telegram Bot Dasturi](#8-bosqich-alohida-aiogram-3x-telegram-bot-dasturi) | ❌ Kutilmoqda | - |
 | **9** | [Namunaviy Ma'lumotlar Yaratish (Seed Data)](#9-bosqich-namunaviy-malumotlar-yaratish-seed-data) | ❌ Kutilmoqda | - |
-| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (29/45) | 29 / 45 |
+| **10** | [Sifat Nazorati va To'liq Integratsion Testlar](#10-bosqich-sifat-nazorati-va-toliq-integratsion-testlar) | ⏳ Qisman (50/50 PASS) | 50 / 50 |
 | **11** | [Production Deployment va Yakuniy Topshirish](#11-bosqich-production-deployment-va-yakuniy-topshirish) | ❌ Kutilmoqda | - |
 
 ---
@@ -152,30 +152,30 @@
 ## 6-BOSQICH: Telegram Bot Integratsiyasi va Xabarnomalar
 *Telegram hisobini bog'lash, bildirishnomalar va xavfsiz aloqa.*
 
-- [ ] **Telegram bog'lash API (`apps/notifications/`):**
-  - [ ] `POST /api/v1/telegram/link/` — tasodifiy token (`secrets.token_urlsafe(16)`) yaratish va havola berish (`t.me/EventlyBot?start=TOKEN`).
-  - [ ] `POST /api/v1/telegram/confirm/` — Bot tomonidan `chat_id` ni tasdiqlash (`X-Bot-Secret` maxfiy kalit tekshiruvi bilan).
-- [ ] **Xabarnomalar servisi (`apps/notifications/services.py`):**
-  - [ ] Telegram Bot API (`sendMessage`) integratsiyasi.
-  - [ ] `transaction.on_commit(...)` orqali faqat tranzaksiya tugagach xabar yuborish.
-  - [ ] `try/except` himoyasi: Telegram ishlamay qolsa ham ro'yxatdan o'tish buzilmasligi kerak.
-- [ ] **Bildirishnomalar (T1):**
-  - [ ] Ro'yxatdan o'tganda foydalanuvchiga tasdiq xabari yuborish (Tadbir nomi, sana, joy).
-  - [ ] Yangi qatnashuvchi yozilganda barcha adminlarga bildirishnoma yuborish (Ism, telefon, band joylar).
+- [x] **Telegram bog'lash API (`apps/notifications/`):**
+  - [x] `POST /api/v1/telegram/link/` — tasodifiy token (`secrets.token_urlsafe(16)`) yaratish va havola berish (`t.me/EventlyBot?start=TOKEN`).
+  - [x] `POST /api/v1/telegram/confirm/` — Bot tomonidan `chat_id` ni tasdiqlash (`X-Bot-Secret` maxfiy kalit tekshiruvi bilan).
+- [x] **Xabarnomalar servisi (`apps/notifications/services.py`):**
+  - [x] Telegram Bot API (`sendMessage`) integratsiyasi.
+  - [x] `transaction.on_commit(...)` orqali faqat tranzaksiya tugagach xabar yuborish.
+  - [x] `try/except` himoyasi: Telegram ishlamay qolsa ham ro'yxatdan o'tish buzilmasligi kerak.
+- [x] **Bildirishnomalar (T1):**
+  - [x] Ro'yxatdan o'tganda foydalanuvchiga tasdiq xabari yuborish (Tadbir nomi, sana, joy).
+  - [x] Yangi qatnashuvchi yozilganda barcha adminlarga bildirishnoma yuborish (Ism, telefon, band joylar).
 
 ---
 
 ## 7-BOSQICH: Avtomatik Eslatmalar Mexanizmi (Reminders)
 *Tadbirdan 24 soat oldin bot orqali avtomatik eslatma jo'natish.*
 
-- [ ] **Management Command:**
-  - [ ] `python manage.py send_event_reminders` komandasi yaratiladi.
-- [ ] **Eslatma Logikasi (T2):**
-  - [ ] `status='active'`, `reminder_sent=False`, `event.status='open'` bo'lgan yozuvlarni tanlash.
-  - [ ] Boshlanishiga `REMINDER_HOURS_BEFORE` (24 soat) qolgan tadbirlarni topish.
-  - [ ] Bog'langan foydalanuvchilarga eslatma yuborish va `reminder_sent = True` belgilash (ikki marta bormasligi uchun).
-- [ ] **Davriy ishga tushirish (Cron):**
-  - [ ] Serverda har 10 daqiqada ishga tushirish uchun cron qo'llanmasi.
+- [x] **Management Command:**
+  - [x] `python manage.py send_event_reminders` komandasi yaratildi.
+- [x] **Eslatma Logikasi (T2):**
+  - [x] `status='active'`, `reminder_sent=False`, `event.status='open'` bo'lgan yozuvlarni tanlash.
+  - [x] Boshlanishiga `REMINDER_HOURS_BEFORE` (24 soat) qolgan tadbirlarni topish.
+  - [x] Bog'langan foydalanuvchilarga eslatma yuborish va `reminder_sent = True` belgilash (ikki marta bormasligi uchun).
+- [x] **Davriy ishga tushirish (Cron):**
+  - [x] Serverda har 10 daqiqada ishga tushirish uchun cron qo'llanmasi.
 
 ---
 
@@ -205,23 +205,24 @@
 ## 10-BOSQICH: Sifat Nazorati va To'liq Integratsion Testlar
 *Loyiha himoyasi va xatolardan himoyalanganlik kafolati.*
 
-- [x] **Mavjud testlar (29 ta PASS):**
+- [x] **Mavjud va yangi qo'shilgan testlar (50 ta PASS):**
   - [x] Auth testlari (12 ta): ro'yxatdan o'tish, login, profil, rol xavfsizligi.
   - [x] Core/Settings testlari (5 ta): health check, custom pagination, exception handler, CORS, logs.
   - [x] Events CRUD testlari (12 ta): model propertilari, admin ruxsatlari, BR-7, BR-8, BR-9 validatsiyalari, filter va search.
-- [ ] **Qo'shilishi kerak bo'lgan testlar (16 ta):**
-  - [ ] `test_registration_success` (ochiq tadbirga muvaffaqiyatli yozilish).
-  - [ ] `test_registration_br1_duplicate` (ikki marta yozilish taqiqlanishi).
-  - [ ] `test_registration_br2_capacity_full` (sig'im to'lganda yozilib bo'lmasligi).
-  - [ ] `test_registration_br3_event_started` (boshlangan tadbirga yozilmasligi).
-  - [ ] `test_registration_br5_event_closed` (yopilgan tadbirga yozilmasligi).
-  - [ ] `test_unregister_br6_after_start` (boshlangan tadbirdan chiqib bo'lmasligi).
-  - [ ] `test_unregister_and_re_register` (chiqib qayta yozilganda joy ochilishi).
-  - [ ] `test_my_registrations_br10` (faqat o'z tadbirlarini ko'rish).
-  - [ ] `test_participants_list_admin_only` (oddiy userga 403, adminga 200).
-  - [ ] `test_telegram_confirm_success_and_wrong_secret` (X-Bot-Secret tekshiruvi).
-  - [ ] `test_telegram_send_failure_does_not_break_registration` (Mock bilan).
-  - [ ] `test_reminder_command_only_sent_once` (eslatma 1 marta borishi).
+  - [x] `test_registration_success` (ochiq tadbirga muvaffaqiyatli yozilish).
+  - [x] `test_registration_br1_duplicate` (ikki marta yozilish taqiqlanishi).
+  - [x] `test_registration_br2_capacity_full` (sig'im to'lganda yozilib bo'lmasligi).
+  - [x] `test_registration_br3_event_started` (boshlangan tadbirga yozilmasligi).
+  - [x] `test_registration_br5_event_closed` (yopilgan tadbirga yozilmasligi).
+  - [x] `test_unregister_br6_after_start` (boshlangan tadbirdan chiqib bo'lmasligi).
+  - [x] `test_unregister_and_re_register` (chiqib qayta yozilganda joy ochilishi).
+  - [x] `test_my_registrations_br10` (faqat o'z tadbirlarini ko'rish).
+  - [x] `test_participants_list_admin_only` (oddiy userga 403, adminga 200).
+  - [x] `test_telegram_link_success` va `test_telegram_link_unauthenticated`.
+  - [x] `test_telegram_confirm_success_and_wrong_secret` (X-Bot-Secret tekshiruvi).
+  - [x] `test_telegram_send_failure_does_not_break_registration` (Mock bilan).
+  - [x] `test_registration_triggers_user_and_admin_notifications` (Tranzaksiya commit bo'lganda bildirishnoma).
+  - [x] `test_reminder_command_only_sent_once` (eslatma 1 marta borishi).
 
 ---
 

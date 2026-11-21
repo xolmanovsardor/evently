@@ -1,10 +1,10 @@
 {
-  "phase": "ENGINEERING",
-  "task": "Registration modeli, biznes qoidalar (BR-1, BR-2, BR-3, BR-5, BR-6, BR-10), register, unregister, my-registrations va participants",
-  "feature_branch": "feat/registration-flow",
+  "phase": "COMPLETED",
+  "task": "Telegram Bot Integratsiyasi, Xabarnomalar va Eslatmalar (Phase 6 & 7)",
+  "feature_branch": "feat/telegram-notifications",
   "cycle_count": 1,
   "max_cycles": 3,
-  "verdict": "PENDING",
+  "verdict": "APPROVED",
   "history": [
     {
       "event": "TASK_STARTED",
@@ -47,7 +47,30 @@
       "task": "Registration modeli, biznes qoidalar (BR-1, BR-2, BR-3, BR-5, BR-6, BR-10), register, unregister, my-registrations va participants",
       "branch": "feat/registration-flow",
       "timestamp": "2026-11-20T21:04:41.313851"
+    },
+    {
+      "event": "TASK_ABORTED",
+      "reason": "Previous registration task completed and merged",
+      "timestamp": "2026-11-21T14:53:57.895037"
+    },
+    {
+      "event": "TASK_STARTED",
+      "task": "Telegram Bot Integratsiyasi, Xabarnomalar va Eslatmalar (Phase 6 & 7)",
+      "branch": "feat/telegram-notifications",
+      "timestamp": "2026-11-21T14:55:13.441294"
+    },
+    {
+      "cycle": 1,
+      "verdict": "APPROVED",
+      "score": 10,
+      "issues": [],
+      "timestamp": "2026-11-21T15:06:06.567511"
+    },
+    {
+      "event": "TASK_COMPLETED",
+      "branch_merged": "feat/telegram-notifications",
+      "timestamp": "2026-11-21T15:06:21.093161"
     }
   ],
-  "last_updated": "2026-11-20T21:04:41.313851"
+  "last_updated": "2026-11-21T15:06:21.093161"
 }
