@@ -152,30 +152,35 @@
 ## 6-BOSQICH: Telegram Bot Integratsiyasi va Xabarnomalar
 *Telegram hisobini bog'lash, bildirishnomalar va xavfsiz aloqa.*
 
-- [x] **Telegram bog'lash API (`apps/notifications/`):**
-  - [x] `POST /api/v1/telegram/link/` — tasodifiy token (`secrets.token_urlsafe(16)`) yaratish va havola berish (`t.me/EventlyBot?start=TOKEN`).
+- [x] **Telegram bog'lash API ([apps/notifications/views.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/views.py)):**
+  - [x] `POST /api/v1/telegram/link/` — tasodifiy xavfsiz token (`secrets.token_urlsafe(16)`) yaratish va havola berish (`t.me/EventlyBot?start=TOKEN`).
   - [x] `POST /api/v1/telegram/confirm/` — Bot tomonidan `chat_id` ni tasdiqlash (`X-Bot-Secret` maxfiy kalit tekshiruvi bilan).
-- [x] **Xabarnomalar servisi (`apps/notifications/services.py`):**
-  - [x] Telegram Bot API (`sendMessage`) integratsiyasi.
-  - [x] `transaction.on_commit(...)` orqali faqat tranzaksiya tugagach xabar yuborish.
-  - [x] `try/except` himoyasi: Telegram ishlamay qolsa ham ro'yxatdan o'tish buzilmasligi kerak.
+  - [x] Serializerlar ([apps/notifications/serializers.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/serializers.py)): `TelegramLinkResponseSerializer`, `TelegramConfirmRequestSerializer`, `TelegramConfirmResponseSerializer`.
+  - [x] Marshrutlar ([apps/notifications/urls.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/urls.py)) API v1 ga ulandi.
+- [x] **Xabarnomalar servisi ([apps/notifications/services.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/services.py)):**
+  - [x] Telegram Bot API (`sendMessage`) integratsiyasi (`send_telegram_message`).
+  - [x] `transaction.on_commit(...)` orqali faqat DB tranzaksiyasi to'liq yakunlangach xabar yuborish.
+  - [x] `try/except` xavfsiz himoyasi: Telegram xizmati ishlamay qolsa ham ro'yxatdan o'tish tranzaksiyasi buzilmaydi.
 - [x] **Bildirishnomalar (T1):**
-  - [x] Ro'yxatdan o'tganda foydalanuvchiga tasdiq xabari yuborish (Tadbir nomi, sana, joy).
-  - [x] Yangi qatnashuvchi yozilganda barcha adminlarga bildirishnoma yuborish (Ism, telefon, band joylar).
+  - [x] Ro'yxatdan o'tganda foydalanuvchiga tasdiq xabari yuborish (`notify_user_registration`: Tadbir nomi, sana, joy).
+  - [x] Yangi qatnashuvchi yozilganda barcha adminlarga bildirishnoma yuborish (`notify_admins_new_registration`: Ism, telefon, band joylar).
 
 ---
 
 ## 7-BOSQICH: Avtomatik Eslatmalar Mexanizmi (Reminders)
 *Tadbirdan 24 soat oldin bot orqali avtomatik eslatma jo'natish.*
 
-- [x] **Management Command:**
-  - [x] `python manage.py send_event_reminders` komandasi yaratildi.
+- [x] **Management Command ([apps/notifications/management/commands/send_event_reminders.py](file:///C:/Users/User/Desktop/NajotTalim/PROJECT/evently/apps/notifications/management/commands/send_event_reminders.py)):**
+  - [x] `python manage.py send_event_reminders [--hours 24]` komandasi yaratildi.
 - [x] **Eslatma Logikasi (T2):**
   - [x] `status='active'`, `reminder_sent=False`, `event.status='open'` bo'lgan yozuvlarni tanlash.
   - [x] Boshlanishiga `REMINDER_HOURS_BEFORE` (24 soat) qolgan tadbirlarni topish.
-  - [x] Bog'langan foydalanuvchilarga eslatma yuborish va `reminder_sent = True` belgilash (ikki marta bormasligi uchun).
+  - [x] Bog'langan foydalanuvchilarga eslatma yuborish va `reminder_sent = True` belgilash (ikki marta bormasligi kafolatlangan).
 - [x] **Davriy ishga tushirish (Cron):**
-  - [x] Serverda har 10 daqiqada ishga tushirish uchun cron qo'llanmasi.
+  - [x] Har 10 daqiqada ishga tushirish qo'llanmasi:
+    ```bash
+    */10 * * * * cd /path/to/evently && /path/to/venv/bin/python manage.py send_event_reminders >> /var/log/evently_reminders.log 2>&1
+    ```
 
 ---
 
