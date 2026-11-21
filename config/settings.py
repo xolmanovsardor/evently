@@ -18,6 +18,13 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+# CSRF Trusted Origins for Production
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000,http://127.0.0.1:8000').split(',')
+    if origin.strip()
+]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

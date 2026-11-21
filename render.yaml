@@ -1,0 +1,55 @@
+services:
+  # Django Backend API Web Service
+  - type: web
+    name: evently-api
+    env: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DB_ENGINE
+        value: "postgres"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: evently-db
+          property: connectionString
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,localhost"
+
+  # aiogram 3.x Telegram Bot Worker
+  - type: worker
+    name: evently-bot
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m bot.main"
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: BACKEND_API_URL
+        value: "https://evently-api.onrender.com/api/v1"
+      - key: BOT_API_SECRET
+        sync: false
+
+  # Eslatmalar jo'natuvchi Cron Job
+  - type: cron
+    name: evently-reminders-cron
+    env: python
+    schedule: "*/10 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py send_event_reminders"
+    envVars:
+      - key: DB_ENGINE
+        value: "postgres"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: evently-db
+          property: connectionString
+
+databases:
+  - name: evently-db
+    databaseName: evently
+    user: evently
+    plan: free
