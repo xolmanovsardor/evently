@@ -212,11 +212,12 @@
 ## 10-BOSQICH: Sifat Nazorati va To'liq Integratsion Testlar
 *Loyiha himoyasi va xatolardan himoyalanganlik kafolati.*
 
-- [x] **Mavjud va yangi qo'shilgan testlar (57 ta PASS):**
+- [x] **Mavjud va yangi qo'shilgan testlar (60 ta PASS):**
   - [x] Auth testlari (12 ta): ro'yxatdan o'tish, login, profil, rol xavfsizligi.
   - [x] Core/Settings testlari (5 ta): health check, custom pagination, exception handler, CORS, logs.
   - [x] Events CRUD testlari (12 ta): model propertilari, admin ruxsatlari, BR-7, BR-8, BR-9 validatsiyalari, filter va search.
   - [x] aiogram Bot testlari (7 ta): API client (200, 400, xatoliklar), /start, /start <token> va /help komandalari.
+  - [x] Seed Data testlari (3 ta): 2 ta admin, 10 ta user, 15 ta turli holatdagi tadbirlar, to'liq band bo'lgan tadbir, idempotency va `--clear` opsiyasi.
   - [x] `test_registration_success` (ochiq tadbirga muvaffaqiyatli yozilish).
   - [x] `test_registration_br1_duplicate` (ikki marta yozilish taqiqlanishi).
   - [x] `test_registration_br2_capacity_full` (sig'im to'lganda yozilib bo'lmasligi).
