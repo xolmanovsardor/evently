@@ -1,7 +1,7 @@
 {
-  "phase": "APPROVED",
+  "phase": "COMPLETED",
   "task": "Alohida aiogram 3.x Telegram Bot Dasturi (Phase 8)",
-  "feature_branch": "feat/aiogram-bot",
+  "feature_branch": null,
   "cycle_count": 1,
   "max_cycles": 3,
   "verdict": "APPROVED",
